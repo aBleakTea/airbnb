@@ -1,0 +1,32 @@
+import PropTypes from 'prop-types';
+import React, { memo } from 'react';
+
+import SectionHeader from '@/components/section-header';
+import { SectionV3Wrapper } from './style';
+import RoomItem from '@/components/room-item';
+import ScrollView from '@/base-ui/scroll-view';
+import SectionFooter from '@/components/section-footer';
+
+const HomeSectionV3 = memo((props) => {
+  const { getInfo } = props;
+
+  return (
+    <SectionV3Wrapper>
+      <SectionHeader title={getInfo.title} subtitle={getInfo.subtitle} />
+      <div className="room-list">
+        <ScrollView>
+          {getInfo.list.map((item) => (
+            <RoomItem itemData={item} key={item.id} itemWidth="20%" />
+          ))}
+        </ScrollView>
+      </div>
+      <SectionFooter name="plus" />
+    </SectionV3Wrapper>
+  );
+});
+
+HomeSectionV3.propTypes = {
+  getInfo: PropTypes.object,
+};
+
+export default HomeSectionV3;
